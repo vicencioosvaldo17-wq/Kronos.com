@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kronos - Gadgets Gamer</title>
+
+<style>
+:root {
+    --azul-principal: #1E3A8A;
+    --azul-secundario: #2563EB;
+    --azul-claro: #60A5FA;
+    --gris-claro: #F3F4F6;
+    --gris-oscuro: #111827;
+}
+
+body { font-family:'Segoe UI',Arial,sans-serif; background:var(--gris-claro); margin:0; color:var(--gris-oscuro);}
+
+header { background:var(--azul-principal); color:white; padding:25px; text-align:center;}
+header img{height:100px;margin-bottom:10px;}
+header p{animation:parpadeo 1.5s infinite;}
+
+@keyframes parpadeo{0%{opacity:1;}50%{opacity:0.5;}100%{opacity:1;}}
+
+nav{background:var(--azul-secundario);display:flex;justify-content:center;flex-wrap:wrap;padding:12px;}
+nav a{color:white;margin:5px 10px;text-decoration:none;}
+
+section{padding:40px;text-align:center;}
+
+button{background:var(--azul-secundario);color:white;border:none;padding:10px;margin:5px;border-radius:5px;cursor:pointer;}
+button:hover{background:var(--azul-claro);}
+
+.producto{background:white;padding:15px;margin:10px;border-radius:10px;display:inline-block;}
+.producto img{width:200px;border-radius:10px;}
+
+footer{background:var(--azul-principal);color:white;text-align:center;padding:20px;}
+
+.social a{margin:0 10px;color:var(--azul-secundario);text-decoration:none;}
+
+.rating{display:flex;justify-content:center;font-size:2em;cursor:pointer;}
+.star{color:gray;}
+.star.selected{color:gold;}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="https://i.imgur.com/9JbVxOI.jpeg">
+<h1>Kronos | Gadgets</h1>
+<p>⚡ El futuro sin retrasos ⚡</p>
+</header>
+
+<nav>
+<a href="#inicio">Inicio</a>
+<a href="#productos">Productos</a>
+<a href="#contacto">Contacto</a>
+<a href="#calificacion">Califica</a>
+<a href="#" onclick="mostrarLogin()">Login</a>
+<a href="#" onclick="mostrarRegistro()">Registro</a>
+</nav>
+
+<section><h2 id="bienvenida"></h2></section>
+
+<section id="registro" style="display:none;">
+<h2>Crear cuenta</h2>
+<input id="nombre" placeholder="Nombre"><br>
+<input id="usuarioR" placeholder="Usuario"><br>
+<input id="passwordR" type="password" placeholder="Contraseña"><br>
+<button onclick="registrar()">Registrarse</button>
+</section>
+
+<section id="login" style="display:none;">
+<h2>Iniciar sesión</h2>
+<input id="usuarioL" placeholder="Usuario"><br>
+<input id="passwordL" type="password"><br>
+<button onclick="login()">Entrar</button>
+</section>
+
+<section id="inicio">
+<h2>Bienvenido a Kronos</h2>
+<button onclick="alert('Explorando productos...')">Explorar</button>
+</section>
+
+<section id="productos">
+<h2>Productos</h2>
+
+<div class="producto">
+<img src="Haylou S30.jpg">
+<p>Haylou S30 Pro - $649.00</p>
+<button onclick="agregarCarrito('Haylou S30 Pro')">Carrito</button>
+<button onclick="agregarFavorito('Haylou S30 Pro')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Soundcore.jpg">
+<p>Soundcore Q11i - $474.00</p>
+<button onclick="agregarCarrito('Soundcore Q11i')">Carrito</button>
+<button onclick="agregarFavorito('Soundcore Q11i')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Razer Viper V3 Pro.jpg">
+<p>Razer Viper V3 Pro - $1315.59</p>
+<button onclick="agregarCarrito('Razer Viper V3 Pro')">Carrito</button>
+<button onclick="agregarFavorito('Razer Viper V3 Pro')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Logitech G305.jpg">
+<p>Logitech G305 LIGHTSPEED - $908.78</p>
+<button onclick="agregarCarrito('Logitech G305')">Carrito</button>
+<button onclick="agregarFavorito('Logitech G305')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Ugreen Nexode.jpg">
+<p>Ugreen Nexode 145W (25,000 mAh) - $1199.00</p>
+<button onclick="agregarCarrito('Ugreen Nexode')">Carrito</button>
+<button onclick="agregarFavorito('Ugreen Nexode')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Ugreen MagFlow.jpg">
+<p>Ugreen MagFlow 10,000 mAh (Qi2) - $998.99</p>
+<button onclick="agregarCarrito('Ugreen MagFlow')">Carrito</button>
+<button onclick="agregarFavorito('Ugreen MagFlow')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Wobkey Rainy75.jpg">
+<p>Wobkey Rainy75 - $3,179.68</p>
+<button onclick="agregarCarrito('Wobkey Rainy75')">Carrito</button>
+<button onclick="agregarFavorito('Wobkey Rainy75')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="ATTACK SHARK K85.jpg">
+<p>ATTACK SHARK K85 - $1,806.92</p>
+<button onclick="agregarCarrito('ATTACK SHARK K85')">Carrito</button>
+<button onclick="agregarFavorito('ATTACK SHARK K85')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="JBL Charge 6.jpg">
+<p>JBL Charge 6 - $2570.39</p>
+<button onclick="agregarCarrito('JBL Charge 6')">Carrito</button>
+<button onclick="agregarFavorito('JBL Charge 6')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="Soundcore Anker 2.jpg">
+<p>Soundcore Anker 2 - $699.00</p>
+<button onclick="agregarCarrito('Soundcore Anker 2')">Carrito</button>
+<button onclick="agregarFavorito('Soundcore Anker 2')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="GameSir Cyclone 2.jpg">
+<p>GameSir Cyclone 2 - $603.92</p>
+<button onclick="agregarCarrito('GameSir Cyclone 2')">Carrito</button>
+<button onclick="agregarFavorito('GameSir Cyclone 2')">❤️</button>
+</div>
+
+<div class="producto">
+<img src="8BitDo Ultimate 2C.jpg">
+<p>8BitDo Ultimate 2C - $615.76</p>
+<button onclick="agregarCarrito('8BitDo Ultimate 2C')">Carrito</button>
+<button onclick="agregarFavorito('8BitDo Ultimate 2C')">❤️</button>
+</div>
+
+<br>
+<button onclick="verCarrito()">Ver carrito</button>
+<button onclick="comprar()">Comprar</button>
+</section>
+
+<section id="contacto">
+<h2>Contacto</h2>
+<div class="social">
+<a href="https://www.instagram.com/kronos.gat" target="_blank">Instagram</a>
+<a href="https://www.tiktok.com/@kronos_tk" target="_blank">TikTok</a>
+<a href="https://www.facebook.com/share/1YHNxzE2zi/" target="_blank">Facebook</a>
+</div>
+</section>
+
+<section id="calificacion">
+<h2>Califica la página</h2>
+<div class="rating">
+<span class="star" onclick="calificar(1)">★</span>
+<span class="star" onclick="calificar(2)">★</span>
+<span class="star" onclick="calificar(3)">★</span>
+<span class="star" onclick="calificar(4)">★</span>
+<span class="star" onclick="calificar(5)">★</span>
+</div>
+</section>
+
+<footer>
+© 2026 Kronos
+</footer>
+
+<script>
+function mostrarRegistro(){
+registro.style.display="block";
+login.style.display="none";
+}
+
+function mostrarLogin(){
+login.style.display="block";
+registro.style.display="none";
+}
+
+function registrar(){
+let user={nombre:nombre.value,usuario:usuarioR.value,password:passwordR.value};
+let usuarios=JSON.parse(localStorage.getItem("usuarios"))||[];
+usuarios.push(user);
+localStorage.setItem("usuarios",JSON.stringify(usuarios));
+alert("Cuenta creada");
+}
+
+function login(){
+let usuarios=JSON.parse(localStorage.getItem("usuarios"))||[];
+let u=usuarios.find(x=>x.usuario===usuarioL.value && x.password===passwordL.value);
+if(u){
+localStorage.setItem("sesion",JSON.stringify(u));
+bienvenida.innerText="Bienvenido "+u.nombre;
+}else alert("Error");
+}
+
+function agregarCarrito(p){
+let c=JSON.parse(localStorage.getItem("carrito"))||[];
+c.push(p);
+localStorage.setItem("carrito",JSON.stringify(c));
+alert("Agregado");
+}
+
+function agregarFavorito(p){
+let f=JSON.parse(localStorage.getItem("fav"))||[];
+f.push(p);
+localStorage.setItem("fav",JSON.stringify(f));
+alert("Favorito");
+}
+
+function verCarrito(){
+let c=JSON.parse(localStorage.getItem("carrito"))||[];
+alert(c.join(", "));
+}
+
+function comprar(){
+alert("Compra simulada realizada");
+localStorage.removeItem("carrito");
+}
+
+function calificar(n){
+let estrellas=document.querySelectorAll(".star");
+estrellas.forEach((e,i)=>{
+e.classList.toggle("selected",i<n);
+});
+alert("Calificaste con "+n+" estrellas");
+}
+</script>
+
+</body>
+</html>
