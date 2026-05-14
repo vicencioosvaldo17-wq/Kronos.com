@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kronos - Premium Gadgets</title>
+
+<style>
+:root {
+    --azul-principal: #1E3A8A;
+    --azul-secundario: #2563EB;
+    --azul-apple: #0071e3;
+    --gris-fondo: #f5f5f7;
+    --gris-tarjeta: #ffffff;
+    --negro-apple: #1d1d1f;
+    --gris-texto: #86868b;
+}
+
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--gris-fondo); 
+    margin: 0; 
+    color: var(--negro-apple);
+    text-align: center;
+}
+
+/* Header */
+header { background: var(--azul-principal); color: white; padding: 60px 20px; }
+header img { height: 90px; border-radius: 20px; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+header h1 { font-size: 40px; font-weight: 600; margin: 0; }
+header p { animation: parpadeo 2s infinite; font-size: 18px; opacity: 0.9; }
+
+@keyframes parpadeo { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+/* Navegación */
+nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    display: flex; justify-content: center; align-items: center;
+    padding: 0 20px; height: 50px;
+    position: sticky; top: 0; z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+nav a { color: var(--negro-apple); margin: 0 15px; text-decoration: none; font-size: 13px; cursor: pointer; opacity: 0.7; }
+nav a:hover, nav a.active { opacity: 1; color: var(--azul-apple); font-weight: 600; }
+
+#cart-count { background: var(--azul-apple); color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
+
+/* Pestañas */
+.tab-content { display: none; padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+.tab-content.active { display: block; animation: slideUp 0.6s ease; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Productos con efecto Glow Gamer */
+#grid-productos { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px 0; }
+
+.producto {
+    background: var(--gris-tarjeta); padding: 30px; border-radius: 24px;
+    width: 260px; transition: 0.4s; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+.producto:hover { 
+    transform: scale(1.03); 
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); /* Resplandor Azul */
+}
+.producto img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 20px; }
+.producto p { font-weight: 600; font-size: 17px; margin: 10px 0; }
+.producto span { color: var(--gris-texto); font-size: 15px; display: block; margin-bottom: 20px; }
+
+button {
+    background: var(--azul-apple); color: white; border: none; 
+    padding: 12px 24px; border-radius: 20px;
+    font-size: 14px; font-weight: 500; cursor: pointer; transition: 0.3s;
+}
+button:hover { background: #0077ed; }
+
+/* Bolsa */
+#bolsa-container {
+    background: white; border-radius: 28px; padding: 40px;
+    max-width: 500px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+.item-carrito { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #f5f5f7; text-align: left; }
+
+/* Formularios */
+.form-group { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+input { width: 100%; max-width: 320px; padding: 16px; border-radius: 12px; border: 1px solid #d2d2d7; outline: none; }
+
+footer { padding: 60px; color: var(--gris-texto); font-size: 12px; }
+
+.rating { font-size: 3rem; display: flex; justify-content: center; gap: 10px; margin-top: 20px;}
+.star { color: #d2d2d7; cursor: pointer; }
+.star.selected { color: #ffcc00; }
+</style>
+</head>
+<body>
+
+<nav>
+    <a onclick="showTab('inicio')" id="nav-inicio" class="active">Inicio</a>
+    <a onclick="showTab('productos')" id="nav-productos">Productos</a>
+    <a onclick="showTab('bolsa')" id="nav-bolsa">Bolsa <span id="cart-count">0</span></a>
+    <a onclick="showTab('contacto')" id="nav-contacto">Contacto</a>
+    <a onclick="showTab('calificacion')" id="nav-calificacion">Calificar</a>
+    <span id="auth-menu" style="margin-left: 15px; padding-left: 15px; border-left: 1px solid #ddd;">
+        <a onclick="showTab('login')">Entrar</a>
+    </span>
+</nav>
+
+<header>
+    <!-- AQUÍ: Cambia el enlace de tu LOGO principal -->
+    <img src="https://i.pinimg.com/736x/ab/73/70/ab73702bf77f08cbc6e8c8adbc432cf8.jpg">
+    <h1 id="bienvenida">Kronos | Gadgets</h1>
+    <p>⚡ El futuro sin retrasos ⚡</p>
+</header>
+
+<section id="inicio" class="tab-content active">
+    <h2 style="font-size: 45px;">Ingeniería de vanguardia.</h2>
+    <p style="color: var(--gris-texto); font-size: 20px; max-width: 600px; margin: 20px auto;">
+        Periféricos diseñados para dominar el juego.
+    </p>
+    <button onclick="showTab('productos')">Comprar ahora</button>
+</section>
+
+<section id="productos" class="tab-content">
+    <h2>Catálogo Completo</h2>
+    <div id="grid-productos"></div>
+</section>
+
+<section id="bolsa" class="tab-content">
+    <div id="bolsa-container">
+        <h2>Tu Bolsa.</h2>
+        <div id="lista-carrito"></div>
+        <div style="margin-top: 30px;">
+            <div style="display:flex; justify-content:space-between; font-size: 20px; font-weight: bold;">
+                <span>Total</span>
+                <span id="total-bolsa">$0.00</span>
+            </div>
+            <button onclick="comprar()" style="width:100%; margin-top: 20px;">Pagar</button>
+        </div>
+    </div>
+</section>
+
+<section id="registro" class="tab-content">
+    <h2>Crea tu cuenta.</h2>
+    <div class="form-group">
+        <input id="reg-nom" placeholder="Nombre completo">
+        <input id="reg-user" placeholder="Usuario">
+        <input id="reg-pass" type="password" placeholder="Contraseña">
+        <button onclick="registrar()">Registrarse</button>
+    </div>
+</section>
+
+<section id="login" class="tab-content">
+    <h2>Inicia sesión.</h2>
+    <div class="form-group">
+        <input id="log-user" placeholder="Usuario">
+        <input id="log-pass" type="password" placeholder="Contraseña">
+        <button onclick="login()">Continuar</button>
+        <p style="color: var(--azul-apple); cursor: pointer;" onclick="showTab('registro')">¿No tienes cuenta? Crea una.</p>
+    </div>
+</section>
+
+<section id="contacto" class="tab-content">
+    <h2>¿Necesitas ayuda?</h2>
+    <p>Contáctanos en redes sociales</p>
+    <div style="margin-top: 20px;">
+        <!-- AQUÍ: Cambia los links por tus REDES SOCIALES reales -->
+        <button onclick="window.open('https://www.instagram.com/kronos.gat')">Instagram</button>
+        <button onclick="window.open('https://www.tiktok.com/@kronos_tk')" style="background:#000">TikTok</button>
+        <button onclick="window.open('https://www.facebook.com/share/1YHNxzE2zi/')" style="background:#1877F2">Facebook</button>
+    </div>
+</section>
+
+<section id="calificacion" class="tab-content">
+    <h2>Tu opinión cuenta</h2>
+    <div class="rating">
+        <span class="star" onclick="calificar(1)">★</span>
+        <span class="star" onclick="calificar(2)">★</span>
+        <span class="star" onclick="calificar(3)">★</span>
+        <span class="star" onclick="calificar(4)">★</span>
+        <span class="star" onclick="calificar(5)">★</span>
+    </div>
+</section>
+
+<footer>© 2026 Kronos | Gadgets Gamer</footer>
+
+<script>
+// AQUÍ: En el catálogo, cambia los links de "img" por las fotos de tus productos
+const catalogo = [
+    { id: 1, nom: "Haylou S30 Pro", precio: 649.00, img: "https://i.pinimg.com/736x/1b/e1/7d/1be17d97209a07fa0b839306cf81ec78.jpg" },
+    { id: 2, nom: "Soundcore Q11i", precio: 474.00, img: "https://i.pinimg.com/736x/d2/af/c3/d2afc3219e5e45366643dc52022b6f45.jpg" },
+    { id: 3, nom: "Razer Viper V3 Pro", precio: 1315.59, img: "https://i.pinimg.com/736x/96/f7/95/96f795ed9ec8c3674ba41b87d399a3d3.jpg" },
+    { id: 4, nom: "Logitech G305 LIGHTSPEED", precio: 908.78, img: "https://i.pinimg.com/736x/86/71/71/8671713c1f945c42abdf5a04d19e68bc.jpg" },
+    { id: 5, nom: "Ugreen Nexode 145W", precio: 1199.00, img: "https://i.pinimg.com/736x/85/40/6f/85406f7cffe079ed5fc093028ca436c4.jpg" },
+    { id: 6, nom: "Ugreen MagFlow 10,000 mAh", precio: 998.99, img: "https://i.pinimg.com/736x/f1/fc/2a/f1fc2a52f8a1952bc4bae281c335de5f.jpg" },
+    { id: 7, nom: "Wobkey Rainy75", precio: 3179.68, img: "https://i.pinimg.com/736x/01/28/28/012828749b7d2d8555664efa66f84b5f.jpg" },
+    { id: 8, nom: "ATTACK SHARK K85", precio: 1806.92, img: "https://i.pinimg.com/736x/89/15/81/8915815dcb6e652e514d74dd72cde988.jpg" },
+    { id: 9, nom: "JBL Charge 6", precio: 2570.39, img: "https://i.pinimg.com/736x/5f/8a/56/5f8a56ffc4b3fa57cd8a1d2e6e84c668.jpg" },
+    { id: 10, nom: "Soundcore Anker 2", precio: 699.00, img: "https://i.pinimg.com/736x/a6/33/85/a63385d8748cf49cf881268d0692d109.jpg" },
+    { id: 11, nom: "GameSir Cyclone 2", precio: 603.92, img: "https://i.pinimg.com/736x/e9/6e/e7/e96ee7d1aeebb0c48a19f4d0faab31de.jpg" },
+    { id: 12, nom: "8BitDo Ultimate 2C", precio: 615.76, img: "https://i.pinimg.com/736x/56/03/ea/5603ead9c907f9dab7e218cea16a104f.jpg" }
+];
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const navLink = document.getElementById('nav-' + id);
+    if(navLink) navLink.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function render() {
+    document.getElementById('grid-productos').innerHTML = catalogo.map(p => `
+        <div class="producto">
+            <img src="${p.img}">
+            <p>${p.nom}</p>
+            <span>$${p.precio.toFixed(2)}</span>
+            <button onclick="add(${p.id})">Añadir</button>
+        </div>
+    `).join('');
+}
+
+function add(id) {
+    carrito.push(catalogo.find(x => x.id === id));
+    updateUI();
+    alert("Producto añadido a la bolsa.");
+}
+
+function updateUI() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    document.getElementById('cart-count').innerText = carrito.length;
+    let total = 0;
+    document.getElementById('lista-carrito').innerHTML = carrito.map((p, i) => {
+        total += p.precio;
+        return `<div class="item-carrito">
+            <span>${p.nom} - $${p.precio}</span>
+            <button onclick="del(${i})" style="background:#ff3b30; padding:5px 10px; border-radius:50%; width:30px; height:30px;">×</button>
+        </div>`;
+    }).join('');
+    document.getElementById('total-bolsa').innerText = `$${total.toFixed(2)}`;
+}
+
+function del(i) { carrito.splice(i, 1); updateUI(); }
+
+function registrar() {
+    const u = { nom: document.getElementById('reg-nom').value, user: document.getElementById('reg-user').value, pass: document.getElementById('reg-pass').value };
+    if(!u.user || !u.pass) return alert("Completa los campos");
+    let list = JSON.parse(localStorage.getItem("usuarios")) || [];
+    list.push(u);
+    localStorage.setItem("usuarios", JSON.stringify(list));
+    alert("¡Cuenta creada!");
+    showTab('login');
+}
+
+function login() {
+    const user = document.getElementById('log-user').value;
+    const pass = document.getElementById('log-pass').value;
+    let list = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const found = list.find(x => x.user === user && x.pass === pass);
+    if(found) {
+        localStorage.setItem("sesion", JSON.stringify(found));
+        location.reload();
+    } else alert("Datos incorrectos");
+}
+
+function verificar() {
+    const s = JSON.parse(localStorage.getItem("sesion"));
+    if(s) {
+        document.getElementById('bienvenida').innerText = "Hola, " + s.nom;
+        document.getElementById('auth-menu').innerHTML = `<a onclick="logout()">Cerrar Sesión</a>`;
+    }
+}
+
+function logout() { localStorage.removeItem("sesion"); location.reload(); }
+
+function calificar(n) {
+    document.querySelectorAll(".star").forEach((s, i) => s.classList.toggle("selected", i < n));
+}
+
+function comprar() {
+    if(carrito.length === 0) return alert("Bolsa vacía");
+    alert("¡Compra procesada con éxito!");
+    carrito = [];
+    updateUI();
+    showTab('inicio');
+}
+
+render();
+updateUI();
+verificar();
+</script>
+</body>
+</html>
